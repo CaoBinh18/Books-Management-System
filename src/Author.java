@@ -113,6 +113,15 @@ public class Author {
         return address;
     }
 
+    public void displayAuthor() {
+        Author author = new Author(name, age, nickname, birthday, address);
+        System.out.format("%20s | ", author.getName());
+        System.out.format("%5d | ", author.getAge());
+        System.out.format("%20s | ", author.getNickname());
+        System.out.format("%20s | ", author.getBirthday());
+        System.out.format("%20s%n", author.getAddress());
+    }
+
     @Override
     public String toString() {
         return "Author " +

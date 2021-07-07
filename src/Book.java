@@ -19,7 +19,7 @@ public class Book {
 
 
 
-    public void display() {
+    public void displayBook() {
         Book book = new Book(idBook, nameBook, publishDay, nickname);
         System.out.format("%5d | ", book.getIdBook());
         System.out.format("%20s | ", book.getNameBook());

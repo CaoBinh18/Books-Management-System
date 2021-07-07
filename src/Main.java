@@ -65,8 +65,9 @@ public class Main {
                     }
                     break;
                 case 2:
+                    System.out.println("   ID |             Tên sách |       Ngày phát hành |              Bút danh");
                     for (Book book : bookList) {
-                        book.display();
+                        book.displayBook();
                     }
                     break;
                 case 3:
@@ -90,18 +91,24 @@ public class Main {
                     }
                     break;
                 case 4:
+                    System.out.println("          Tên tác giả | Tuổi |             Bút danh |           Ngày sinh |               Địa chỉ");
+                    for (Author author : authorList) {
+                        author.displayAuthor();
+                    }
+                    break;
+                case 5:
                     System.out.println("Nhập tên bút danh cần tìm: ");
                     String nickname = sc.nextLine();
 
                     for (int i = 0; i < bookList.size(); i++) {
                         if (bookList.get(i).getNickname().equalsIgnoreCase(nickname)) {
-                            bookList.get(i).display();
+                            bookList.get(i).displayBook();
                         } else {
                             System.out.println("Không có trong danh sách.");
                         }
                     }
                     break;
-                case 5:
+                case 6:
                     System.out.println("Nhập ID sách cần sửa: ");
                     try {
                         id = Integer.parseInt(sc.nextLine());
@@ -116,7 +123,7 @@ public class Main {
 //                        e.getStackTrace();
                     }
                     break;
-                case 6:
+                case 7:
                     System.out.println("Nhập ID sách cần xóa: ");
                     try {
                         id = Integer.parseInt(sc.nextLine());
@@ -136,7 +143,7 @@ public class Main {
                         e.printStackTrace();
                     }
                     break;
-                case 7:
+                case 8:
                     File infile = new File("E:\\CaseStudy2\\books.csv");
                     try{
                         FileWriter fw = new FileWriter(infile);
@@ -157,7 +164,7 @@ public class Main {
                     }
                     System.out.println("Đã ghi file!");
                     break;
-                case 8:
+                case 9:
                     String line = "";
                     String splitBy = ", ";
                     if (bookList.size() == 0){
@@ -183,10 +190,10 @@ public class Main {
                     }
 
                     for (Book book : bookList) {
-                        book.display();
+                        book.displayBook();
                     }
                     break;
-                case 9:
+                case 0:
                     System.out.println("Tạm biệt và hẹn gặp lại!");
                     System.exit(0);
                     break;
@@ -195,7 +202,7 @@ public class Main {
                     System.err.println("Hãy nhập lại: ");
                     break;
             }
-        } while (choice != 9);
+        } while (choice != 0);
     }
 
     static void showmenu() {
@@ -203,12 +210,13 @@ public class Main {
         System.out.println("1. Nhập thông tin sách");
         System.out.println("2. Hiển thị tất cả sách");
         System.out.println("3. Nhập thông tin tác giả");
-        System.out.println("4. Tìm kiếm sách theo bút danh");
-        System.out.println("5. Chỉnh sửa thông tin sách");
-        System.out.println("6. Xóa sách");
-        System.out.println("7. Ghi File");
-        System.out.println("8. Đọc File");
-        System.out.println("9. Thoát");
+        System.out.println("4. Hiển thị thông tin tác giả");
+        System.out.println("5. Tìm kiếm sách theo bút danh");
+        System.out.println("6. Chỉnh sửa thông tin sách");
+        System.out.println("7. Xóa sách");
+        System.out.println("8. Ghi File");
+        System.out.println("9. Đọc File");
+        System.out.println("0. Thoát");
         System.out.println("==================================");
         System.out.println("Nhập lựa chọn của bạn: ");
     }
