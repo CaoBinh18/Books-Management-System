@@ -71,11 +71,11 @@ public class Book {
             nickname = sc.nextLine();
     }
 
-//    @Override
-//    public String toString() {
-//        return "ID: " + idBook +
-//                "| Tên sách: '" + nameBook + '\'' +
-//                "| Ngày phát hành: '" + publishDay + '\'' +
-//                "| Bút danh = '" + nickname + '\'';
-//    }
+    @Override
+    public String toString() {
+        return "ID: " + idBook +
+                "| Tên sách: '" + nameBook + '\'' +
+                "| Ngày phát hành: '" + publishDay + '\'' +
+                "| Bút danh = '" + nickname + '\'';
+    }
 }

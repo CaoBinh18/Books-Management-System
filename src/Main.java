@@ -127,7 +127,7 @@ public class Main {
 //                            }
 //                        }
                         bookList.remove(id-1);
-                        for(int i=0; i<bookList.size();i++){
+                        for(int i = 0; i < bookList.size(); i++){
                             if (bookList.get(i).getIdBook() > (id - 1)) {
                                 bookList.get(i).setIdBook(bookList.get(i).getIdBook() - 1);
                             }
