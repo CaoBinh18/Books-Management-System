@@ -26,8 +26,21 @@ public class Main {
                         for (int i = 0; i < n; i++) {
                             id = (bookList.size() > 0) ? (bookList.size() + 1) : 1;
                             System.out.println("Sách số: " + id);
-                            Book book = new Book();
-                            book.inputBook();
+
+                                int idBook = (bookList.size() > 0) ? (bookList.size() + 1) : 1;
+                                System.out.println("ID: " + idBook);
+
+                                System.out.println("Tên sách: ");
+                                String nameBook = sc.nextLine();
+
+                                System.out.println("Ngày xuất bản: ");
+                                String publishDay = sc.nextLine();
+
+                                System.out.println("Bút danh: ");
+                                String nickname = sc.nextLine();
+
+                            Book book = new Book(idBook, nameBook, publishDay, nickname);
+
                             boolean isFind = false;
 
                             for (int j = 0; j < authorList.size(); j++) {
@@ -39,16 +52,17 @@ public class Main {
                             if (!isFind) {
                                 Author author = new Author(book.getNickname());
                                 author.inputAuthor();
-
+                                author.inputAge();
+                                author.inputBirthday();
+                                author.inputAddress();
                                 authorList.add(author);
                             }
                             bookList.add(book);
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Nhập sai. Vui lòng nhập lại theo menu.");
-                        e.getStackTrace();
+//                        e.getStackTrace();
                     }
-
                     break;
                 case 2:
                     for (Book book : bookList) {
@@ -61,12 +75,18 @@ public class Main {
                         n = Integer.parseInt(sc.nextLine());
 
                         for (int i = 0; i < n; i++) {
+                            id = (authorList.size() > 0) ? (authorList.size() + 1) : 1;
+                            System.out.println("Tác giả " + id);
                             Author author = new Author();
                             author.inputAuthor(authorList);
+                            author.inputAge();
+                            author.inputBirthday();
+                            author.inputAddress();
                             authorList.add(author);
                         }
                     } catch (NumberFormatException e) {
-                        e.getStackTrace();
+                        System.out.println("Nhập sai. Vui lòng nhập lại theo Menu.");
+//                        e.getStackTrace();
                     }
                     break;
                 case 4:
@@ -76,6 +96,8 @@ public class Main {
                     for (int i = 0; i < bookList.size(); i++) {
                         if (bookList.get(i).getNickname().equalsIgnoreCase(nickname)) {
                             bookList.get(i).display();
+                        } else {
+                            System.out.println("Không có trong danh sách.");
                         }
                     }
                     break;
@@ -90,17 +112,28 @@ public class Main {
                             }
                         }
                     } catch (NumberFormatException e) {
-                        e.getStackTrace();
+                        System.out.println("ID không tồn tại. Hãy nhập lại");
+//                        e.getStackTrace();
                     }
                     break;
                 case 6:
                     System.out.println("Nhập ID sách cần xóa: ");
-                    id = Integer.parseInt(sc.nextLine());
-                    for (Book book : bookList) {
-                        if (book.getIdBook() == id) {
-                            bookList.remove(book);
-                            break;
+                    try {
+                        id = Integer.parseInt(sc.nextLine());
+//                        for (Book book : bookList) {
+//                            if (book.getIdBook() == id) {
+//                                bookList.remove(book);
+//                                break;
+//                            }
+//                        }
+                        bookList.remove(id-1);
+                        for(int i=0; i<bookList.size();i++){
+                            if (bookList.get(i).getIdBook() > (id - 1)) {
+                                bookList.get(i).setIdBook(bookList.get(i).getIdBook() - 1);
+                            }
                         }
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
                     }
                     break;
                 case 7:
@@ -108,7 +141,7 @@ public class Main {
                     FileOutputStream fw = null;
 
                     try {
-                        fw = new FileOutputStream("books.txt", true);
+                        fw = new FileOutputStream("books.txt");
 
                         for (Book book : bookList) {
                             String line = book.getFileLine();
@@ -197,7 +230,7 @@ public class Main {
         System.out.println("2. Hiển thị tất cả sách");
         System.out.println("3. Nhập thông tin tác giả");
         System.out.println("4. Tìm kiếm sách theo bút danh");
-        System.out.println("5. Chỉnh sửa sách");
+        System.out.println("5. Chỉnh sửa thông tin sách");
         System.out.println("6. Xóa sách");
         System.out.println("7. Ghi File");
         System.out.println("8. Đọc File");

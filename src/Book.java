@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Book {
-    private int idBook;
+    public int idBook;
     private String nameBook;
     private String publishDay;
     private String nickname;
@@ -28,24 +29,6 @@ public class Book {
         nameBook = params[1];
         publishDay = params[2];
         nickname = params[3];
-    }
-
-    public void inputBook() {
-
-        System.out.println("ID của sách: ");
-        idBook = Integer.parseInt(sc.nextLine());
-        try {
-            System.out.println("Tên sách: ");
-            nameBook = sc.nextLine();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Ngày xuất bản: ");
-        publishDay = sc.nextLine();
-
-        System.out.println("Bút danh: ");
-        nickname = sc.nextLine();
     }
 
     public void display() {
@@ -84,11 +67,22 @@ public class Book {
         this.nickname = nickname;
     }
 
+    public void inputBook() {
+           System.out.println("Tên sách: ");
+           nameBook = sc.nextLine();
+
+            System.out.println("Ngày xuất bản: ");
+            publishDay = sc.nextLine();
+
+            System.out.println("Bút danh: ");
+            nickname = sc.nextLine();
+    }
+
     @Override
     public String toString() {
         return "ID: " + idBook +
-                ", Tên sách: '" + nameBook + '\'' +
-                ", Ngày phát hành: '" + publishDay + '\'' +
-                ", Bút danh = '" + nickname + '\'';
+                "| Tên sách: '" + nameBook + '\'' +
+                "| Ngày phát hành: '" + publishDay + '\'' +
+                "| Bút danh = '" + nickname + '\'';
     }
 }

@@ -1,4 +1,0 @@
-1, Sach so mot, 1/1/2010, ph
-2, Sach so hai , 1/2/2010, oc
-1, Sách số một, 1/2, oc
-2, Sách số hai, 1/2, ph

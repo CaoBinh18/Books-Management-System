@@ -7,6 +7,7 @@ public class Author {
     private String nickname;
     private String birthday;
     private String address;
+    Scanner sc = new Scanner(System.in);
 
     public Author() {
     }
@@ -32,21 +33,25 @@ public class Author {
 //        System.out.println("Tuổi: ");
 //        age = Integer.parseInt(sc.nextLine());
 
-        System.out.println("Bút danh: ");
-        while (true) {
-            nickname = sc.nextLine();
-            boolean isFind = false;
-            for (int i = 0; i < authorList.size(); i++) {
-                if (authorList.get(i).getNickname().equalsIgnoreCase(nickname)) {
-                    isFind = true;
+        try {
+            System.out.println("Bút danh: ");
+            while (true) {
+                nickname = sc.nextLine();
+                boolean isFind = false;
+                for (int i = 0; i < authorList.size(); i++) {
+                    if (authorList.get(i).getNickname().equalsIgnoreCase(nickname)) {
+                        isFind = true;
+                        break;
+                    }
+                }
+                if (!isFind) {
                     break;
+                } else {
+                    System.out.println("Nhập bút danh khác: ");
                 }
             }
-            if (!isFind) {
-                break;
-            } else {
-                System.out.println("Nhập bút danh khác: ");
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 //        System.out.println("Ngày sinh: ");
@@ -57,16 +62,29 @@ public class Author {
     }
 
     public void inputAuthor() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Tên tác giả: ");
         name = sc.nextLine();
+    }
 
+    public void inputAge() {
         System.out.println("Tuổi: ");
-        age = Integer.parseInt(sc.nextLine());
+        while (true) {
+            try {
+                age = Integer.parseInt(sc.nextLine());
+                return;
+            } catch (NumberFormatException e) {
+                System.out.println("Nhập sai định dạng. Vui lòng nhập lại!");
+                System.out.println("Tuổi: ");
+            }
+        }
+    }
 
+    public void inputBirthday() {
         System.out.println("Ngày sinh: ");
         birthday = sc.nextLine();
+    }
 
+    public void inputAddress() {
         System.out.println("Địa chỉ: ");
         address = sc.nextLine();
     }
