@@ -1,5 +1,8 @@
+package Model;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import static Service.Regex.*;
 
 public class Author {
     private String name;
@@ -27,11 +30,6 @@ public class Author {
     public void inputAuthor(ArrayList<Author> authorList) {
         Scanner sc = new Scanner(System.in);
         inputAuthor();
-//        System.out.println("Tên tác giả: ");
-//        name = sc.nextLine();
-//
-//        System.out.println("Tuổi: ");
-//        age = Integer.parseInt(sc.nextLine());
 
         try {
             System.out.println("Bút danh: ");
@@ -53,12 +51,6 @@ public class Author {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-//        System.out.println("Ngày sinh: ");
-//           birthday = sc.nextLine();
-//
-//           System.out.println("Địa chỉ: ");
-//           address = sc.nextLine();
     }
 
     public void inputAuthor() {
@@ -82,6 +74,11 @@ public class Author {
     public void inputBirthday() {
         System.out.println("Ngày sinh: ");
         birthday = sc.nextLine();
+        while (!checkDateTime(birthday)) {
+            System.out.println("Ngày tháng không hợp lệ. Hãy nhập lại!!!");
+            System.out.println("Ngày sinh: ");
+            birthday = sc.nextLine();
+        }
     }
 
     public void inputAddress() {
@@ -124,7 +121,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author " +
+        return "model.Author " +
                 "name = '" + name + '\'' +
                 ", age = " + age +
                 ", nickname = '" + nickname + '\'' +

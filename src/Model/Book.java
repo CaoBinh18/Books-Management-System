@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.Scanner;
 
 public class Book {
@@ -60,14 +62,14 @@ public class Book {
     }
 
     public void inputBook() {
-           System.out.println("Tên sách: ");
-           nameBook = sc.nextLine();
+        System.out.println("Tên sách: ");
+        nameBook = sc.nextLine();
 
-            System.out.println("Ngày xuất bản: ");
-            publishDay = sc.nextLine();
+        System.out.println("Ngày xuất bản: ");
+        publishDay = sc.nextLine();
 
-            System.out.println("Bút danh: ");
-            nickname = sc.nextLine();
+        System.out.println("Bút danh: ");
+        nickname = sc.nextLine();
     }
 
     @Override
