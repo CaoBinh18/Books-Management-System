@@ -137,80 +137,52 @@ public class Main {
                     }
                     break;
                 case 7:
-                    System.out.println("Bắt đầu ghi file");
-                    FileOutputStream fw = null;
-
-                    try {
-                        fw = new FileOutputStream("books.txt");
-
-                        for (Book book : bookList) {
-                            String line = book.getFileLine();
-                            byte[] bytes = line.getBytes("utf8");
-                            fw.write(bytes);
+                    File infile = new File("E:\\CaseStudy2\\books.csv");
+                    try{
+                        FileWriter fw = new FileWriter(infile);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        for (int i = 0; i <  bookList.size(); i++){
+                            bw.write(bookList.get(i).getIdBook() + "," +
+                                    bookList.get(i).getNameBook() +
+                                    "," +bookList.get(i).getPublishDay() +
+                                    "," +bookList.get(i).getNickname() + "\n");
                         }
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (UnsupportedEncodingException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    } finally {
-                        if (fw != null) {
-                            try {
-                                fw.close();
-                            } catch (IOException ex) {
-                                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
+                        bw.close();
+                        fw.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
+                    System.out.println("Đã ghi file!");
                     break;
                 case 8:
-                    FileInputStream fi = null;
-                    InputStreamReader reader = null;
-                    BufferedReader bufferedReader = null;
+                    String line = "";
+                    String splitBy = ", ";
+                    if (bookList.size() == 0){
+                        System.out.println("Chưa thêm thông tin sách vào!");
+                    } else {
+                        System.out.println("Đã đọc file!");
+                        try {
+                            BufferedReader br = new BufferedReader(new FileReader("CaseStudy2\\books.csv"));
+                            int i = 0;
+                            while ((line = br.readLine()) != null) {
+                                String[] book = line.split(splitBy);
+                                Book book1 = new Book();
+                                book1.setIdBook(Integer.parseInt(book[0]));
+                                book1.setNameBook(book[1]);
+                                book1.setPublishDay(book[2]);
+                                book1.setNickname(book[3]);
+                                bookList.add(book1);
 
-                    try {
-                        fi = new FileInputStream("books.txt");
+                            }
+                        } catch (IOException e) {
+                            e.getMessage();
+                        }
+                    }
 
-                        reader = new InputStreamReader(fi, StandardCharsets.UTF_8);
-
-                        bufferedReader = new BufferedReader(reader);
-
-                        String line = null;
-                        while ((line = bufferedReader.readLine()) != null) {
-                            if (line.isEmpty()) {
-                                continue;
-                            }
-                            Book book = new Book();
-                            book.parse(line);
-                            bookList.add(book);
-                        }
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    } finally {
-                        if (fi != null) {
-                            try {
-                                fi.close();
-                            } catch (IOException ex) {
-                                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                        if (reader != null) {
-                            try {
-                                reader.close();
-                            } catch (IOException ex) {
-                                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                        if (bufferedReader != null) {
-                            try {
-                                bufferedReader.close();
-                            } catch (IOException ex) {
-                                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
+                    for (Book book : bookList) {
+                        book.display();
                     }
                     break;
                 case 9:
@@ -226,6 +198,7 @@ public class Main {
     }
 
     static void showmenu() {
+        System.out.println("===============MENU===============");
         System.out.println("1. Nhập thông tin sách");
         System.out.println("2. Hiển thị tất cả sách");
         System.out.println("3. Nhập thông tin tác giả");
@@ -235,7 +208,7 @@ public class Main {
         System.out.println("7. Ghi File");
         System.out.println("8. Đọc File");
         System.out.println("9. Thoát");
-        System.out.println("=================================");
+        System.out.println("==================================");
         System.out.println("Nhập lựa chọn của bạn: ");
     }
 }

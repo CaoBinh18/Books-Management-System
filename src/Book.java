@@ -18,21 +18,14 @@ public class Book {
         this.nickname = nickname;
     }
 
-    public String getFileLine() {
-        return idBook + ", " + nameBook + ", " + publishDay + ", " + nickname + "\n";
-    }
 
-    public void parse(String line) {
-        String[] params = line.split(", ");
-
-        idBook = Integer.parseInt(params[0]);
-        nameBook = params[1];
-        publishDay = params[2];
-        nickname = params[3];
-    }
 
     public void display() {
-        System.out.println(toString());
+        Book book = new Book(idBook, nameBook, publishDay, nickname);
+        System.out.format("%5d | ", book.getIdBook());
+        System.out.format("%20s | ", book.getNameBook());
+        System.out.format("%20s | ", book.getPublishDay());
+        System.out.format("%20s%n", book.getNickname());
     }
 
     public int getIdBook() {
@@ -78,11 +71,11 @@ public class Book {
             nickname = sc.nextLine();
     }
 
-    @Override
-    public String toString() {
-        return "ID: " + idBook +
-                "| Tên sách: '" + nameBook + '\'' +
-                "| Ngày phát hành: '" + publishDay + '\'' +
-                "| Bút danh = '" + nickname + '\'';
-    }
+//    @Override
+//    public String toString() {
+//        return "ID: " + idBook +
+//                "| Tên sách: '" + nameBook + '\'' +
+//                "| Ngày phát hành: '" + publishDay + '\'' +
+//                "| Bút danh = '" + nickname + '\'';
+//    }
 }
