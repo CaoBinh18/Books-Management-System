@@ -142,10 +142,11 @@ public class Main {
                         FileWriter fw = new FileWriter(infile);
                         BufferedWriter bw = new BufferedWriter(fw);
                         for (int i = 0; i <  bookList.size(); i++){
-                            bw.write(bookList.get(i).getIdBook() + "," +
-                                    bookList.get(i).getNameBook() +
-                                    "," +bookList.get(i).getPublishDay() +
-                                    "," +bookList.get(i).getNickname() + "\n");
+                            bw.write(bookList.get(i).getIdBook() +
+                                    ", " + bookList.get(i).getNameBook() +
+                                    ", " +bookList.get(i).getPublishDay() +
+                                    ", " +bookList.get(i).getNickname() +
+                                    "\n");
                         }
                         bw.close();
                         fw.close();
@@ -162,7 +163,7 @@ public class Main {
                     if (bookList.size() == 0){
                         System.out.println("Chưa thêm thông tin sách vào!");
                     } else {
-                        System.out.println("Đã đọc file!");
+                        System.out.println("Đọc file!");
                         try {
                             BufferedReader br = new BufferedReader(new FileReader("CaseStudy2\\books.csv"));
                             int i = 0;
