@@ -4,6 +4,7 @@ import Service.bookManagement;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -14,7 +15,15 @@ public class Main {
 
         do {
             showmenu();
-            choice = Integer.parseInt(sc.nextLine());
+            while (true) {
+                try{
+                    choice = new Scanner(System.in).nextInt();
+                    break;
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Không hợp lệ!!!");
+                }
+            }
 
             switch (choice) {
                 case 1:

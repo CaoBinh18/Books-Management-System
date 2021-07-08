@@ -5,11 +5,14 @@ import Model.Book;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import static Service.Regex.*;
 
 public class bookManagement {
     private static int n, id;
+    private static String nameBook, nickname;
     private static Scanner sc = new Scanner(System.in);
 
     private static ArrayList<Author> authorList = new ArrayList<>();
@@ -28,7 +31,18 @@ public class bookManagement {
                 System.out.println("ID: " + idBook);
 
                 System.out.println("Tên sách: ");
-                String nameBook = sc.nextLine();
+                while (true) {
+                    try {
+                        nameBook = sc.nextLine();
+                        if(nameBook == ""){
+                            continue;
+                        }else{
+                            break;}
+                    } catch (InputMismatchException e) {
+                        System.out.println("Không hợp lệ!!!");
+                    }
+                }
+                
 
                 System.out.println("Ngày xuất bản: ");
                 String publishDay = sc.nextLine();
@@ -40,7 +54,17 @@ public class bookManagement {
                 }
 
                 System.out.println("Bút danh: ");
-                String nickname = sc.nextLine();
+                while (true) {
+                    try {
+                        nickname = sc.nextLine();
+                        if(nickname == ""){
+                            continue;
+                        }else{
+                            break;}
+                    } catch (InputMismatchException e) {
+                        System.out.println("Không hợp lệ!!!");
+                    }
+                }
 
                 Book book = new Book(idBook, nameBook, publishDay, nickname);
 
@@ -153,8 +177,8 @@ public class bookManagement {
     }
 
     public static void writeFile() {
-        File infile = new File("E:\\CaseStudy2\\books.csv");
         try{
+            File infile = new File("E:\\CaseStudy2\\books.csv");
             FileWriter fw = new FileWriter(infile);
             BufferedWriter bw = new BufferedWriter(fw);
             for (int i = 0; i <  bookList.size(); i++){
@@ -174,33 +198,59 @@ public class bookManagement {
         System.out.println("Đã ghi file!");
     }
 
-    public static void readFile() {
-        String line = "";
-        String splitBy = ", ";
-        if (bookList.size() == 0){
-            System.out.println("Chưa thêm thông tin sách vào!");
-        } else {
-            System.out.println("Đọc file!");
-            try {
-                BufferedReader br = new BufferedReader(new FileReader("CaseStudy2\\books.csv"));
-                int i = 0;
-                while ((line = br.readLine()) != null) {
-                    String[] book = line.split(splitBy);
+    public static List<Book> readFile() {
+        File infile = new File("E:\\CaseStudy2\\books.csv");
+        try  {
+            FileReader fr = new FileReader(infile);
+            BufferedReader br = new BufferedReader(fr);
+
+            String line;
+            String splitBy = ", ";
+            while((line = br.readLine()) != null) {
+                String[] book = line.split(splitBy);
                     Book book1 = new Book();
                     book1.setIdBook(Integer.parseInt(book[0]));
                     book1.setNameBook(book[1]);
                     book1.setPublishDay(book[2]);
                     book1.setNickname(book[3]);
                     bookList.add(book1);
-
-                }
-            } catch (IOException e) {
-                e.getMessage();
             }
+            br.close();
+            fr.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        for (Book book : bookList) {
-            book.displayBook();
-        }
+        return bookList;
     }
+//        String line = "";
+//        String splitBy = ", ";
+//        if (bookList.size() == 0){
+//            System.out.println("Chưa thêm thông tin sách vào!");
+//        } else {
+//            System.out.println("Đọc file!");
+//            try {
+//                BufferedReader br = new BufferedReader(new FileReader("CaseStudy2\\books.csv"));
+//                int i = 0;
+//                while ((line = br.readLine()) != null) {
+//                    String[] book = line.split(splitBy);
+//                    Book book1 = new Book();
+//                    book1.setIdBook(Integer.parseInt(book[0]));
+//                    book1.setNameBook(book[1]);
+//                    book1.setPublishDay(book[2]);
+//                    book1.setNickname(book[3]);
+//                    bookList.add(book1);
+//
+//                }
+//            } catch (IOException e) {
+//                e.getMessage();
+//            }
+//        }
+//
+//        for (Book book : bookList) {
+//            book.displayBook();
+//        }
+//    }
 }

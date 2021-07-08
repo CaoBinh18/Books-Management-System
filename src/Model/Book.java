@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Book {
@@ -63,13 +64,44 @@ public class Book {
 
     public void inputBook() {
         System.out.println("Tên sách: ");
-        nameBook = sc.nextLine();
+        while (true) {
+            try {
+                nameBook = new Scanner(System.in).nextLine();
+                if(nameBook == ""){
+                    continue;
+                }else{
+                    break;}
+            } catch (InputMismatchException e) {
+                System.out.println("Không hợp lệ!!!");
+            }
+        }
+
 
         System.out.println("Ngày xuất bản: ");
-        publishDay = sc.nextLine();
+        while (true) {
+            try {
+                publishDay = new Scanner(System.in).nextLine();
+                if(publishDay == ""){
+                    continue;
+                }else{
+                    break;}
+            } catch (InputMismatchException e) {
+                System.out.println("Không hợp lệ!!!");
+            }
+        }
 
         System.out.println("Bút danh: ");
-        nickname = sc.nextLine();
+        while (true) {
+            try {
+                nickname = new Scanner(System.in).nextLine();
+                if(nickname == ""){
+                    continue;
+                }else{
+                    break;}
+            } catch (InputMismatchException e) {
+                System.out.println("Không hợp lệ!!!");
+            }
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import static Service.Regex.*;
 
@@ -55,7 +56,17 @@ public class Author {
 
     public void inputAuthor() {
         System.out.println("Tên tác giả: ");
-        name = sc.nextLine();
+        while (true) {
+            try {
+                name = new Scanner(System.in).nextLine();
+                if(name == ""){
+                    continue;
+                }else{
+                    break;}
+            } catch (InputMismatchException e) {
+                System.out.println("Không hợp lệ!!!");
+            }
+        }
     }
 
     public void inputAge() {
@@ -83,7 +94,17 @@ public class Author {
 
     public void inputAddress() {
         System.out.println("Địa chỉ: ");
-        address = sc.nextLine();
+        while (true) {
+            try {
+                address = new Scanner(System.in).nextLine();
+                if(address == ""){
+                    continue;
+                }else{
+                    break;}
+            } catch (InputMismatchException e) {
+                System.out.println("Không hợp lệ!!!");
+            }
+        }
     }
 
     public void display(){
