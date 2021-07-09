@@ -52,6 +52,7 @@ public class Main {
                     break;
                 case 9:
                     bookManagement.readFile();
+                    bookManagement.showB();
                     break;
                 case 0:
                     System.out.println("Tạm biệt và hẹn gặp lại!");

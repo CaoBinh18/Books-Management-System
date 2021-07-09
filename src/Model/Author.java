@@ -33,7 +33,7 @@ public class Author {
         inputAuthor();
 
         try {
-            System.out.println("Bút danh: ");
+            System.out.print("Bút danh: ");
             while (true) {
                 nickname = sc.nextLine();
                 boolean isFind = false;
@@ -46,7 +46,7 @@ public class Author {
                 if (!isFind) {
                     break;
                 } else {
-                    System.out.println("Nhập bút danh khác: ");
+                    System.out.print("Nhập bút danh khác: ");
                 }
             }
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class Author {
     }
 
     public void inputAuthor() {
-        System.out.println("Tên tác giả: ");
+        System.out.print("Tên tác giả: ");
         while (true) {
             try {
                 name = new Scanner(System.in).nextLine();
@@ -70,30 +70,30 @@ public class Author {
     }
 
     public void inputAge() {
-        System.out.println("Tuổi: ");
+        System.out.print("Tuổi: ");
         while (true) {
             try {
                 age = Integer.parseInt(sc.nextLine());
                 return;
             } catch (NumberFormatException e) {
                 System.out.println("Nhập sai định dạng. Vui lòng nhập lại!");
-                System.out.println("Tuổi: ");
+                System.out.print("Tuổi: ");
             }
         }
     }
 
     public void inputBirthday() {
-        System.out.println("Ngày sinh: ");
+        System.out.print("Ngày sinh: ");
         birthday = sc.nextLine();
         while (!checkDateTime(birthday)) {
             System.out.println("Ngày tháng không hợp lệ. Hãy nhập lại!!!");
-            System.out.println("Ngày sinh: ");
+            System.out.print("Ngày sinh: ");
             birthday = sc.nextLine();
         }
     }
 
     public void inputAddress() {
-        System.out.println("Địa chỉ: ");
+        System.out.print("Địa chỉ: ");
         while (true) {
             try {
                 address = new Scanner(System.in).nextLine();
@@ -107,9 +107,9 @@ public class Author {
         }
     }
 
-    public void display(){
-        System.out.println(toString());
-    }
+//    public void display(){
+//        System.out.println(toString());
+//    }
 
     public String getName() {
         return name;
@@ -129,6 +129,26 @@ public class Author {
 
     public String getAddress() {
         return address;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void displayAuthor() {

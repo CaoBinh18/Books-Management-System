@@ -63,7 +63,7 @@ public class Book {
     }
 
     public void inputBook() {
-        System.out.println("Tên sách: ");
+        System.out.print("Tên sách: ");
         while (true) {
             try {
                 nameBook = new Scanner(System.in).nextLine();
@@ -77,7 +77,7 @@ public class Book {
         }
 
 
-        System.out.println("Ngày xuất bản: ");
+        System.out.print("Ngày xuất bản: ");
         while (true) {
             try {
                 publishDay = new Scanner(System.in).nextLine();
@@ -90,7 +90,7 @@ public class Book {
             }
         }
 
-        System.out.println("Bút danh: ");
+        System.out.print("Bút danh: ");
         while (true) {
             try {
                 nickname = new Scanner(System.in).nextLine();

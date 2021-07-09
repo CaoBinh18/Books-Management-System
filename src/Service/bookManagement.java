@@ -19,7 +19,7 @@ public class bookManagement {
     private static ArrayList<Book> bookList = new ArrayList<>();
 
     public static void addBook() {
-        System.out.println("Số sách cần thêm: ");
+        System.out.print("Số sách cần thêm: ");
         try {
             n = Integer.parseInt(sc.nextLine());
 
@@ -30,7 +30,7 @@ public class bookManagement {
                 int idBook = (bookList.size() > 0) ? (bookList.size() + 1) : 1;
                 System.out.println("ID: " + idBook);
 
-                System.out.println("Tên sách: ");
+                System.out.print("Tên sách: ");
                 while (true) {
                     try {
                         nameBook = sc.nextLine();
@@ -44,16 +44,16 @@ public class bookManagement {
                 }
                 
 
-                System.out.println("Ngày xuất bản: ");
+                System.out.print("Ngày xuất bản: ");
                 String publishDay = sc.nextLine();
 
                 while (!checkDateTime(publishDay)) {
                     System.out.println("Ngày tháng không hợp lệ. Hãy nhập lại!!!");
-                    System.out.println("Ngày xuất bản: ");
+                    System.out.print("Ngày xuất bản: ");
                     publishDay = sc.nextLine();
                 }
 
-                System.out.println("Bút danh: ");
+                System.out.print("Bút danh: ");
                 while (true) {
                     try {
                         nickname = sc.nextLine();
@@ -99,7 +99,7 @@ public class bookManagement {
     }
 
     public static void addAuthor() {
-        System.out.println("Nhập số lượng tác giả thêm vào: ");
+        System.out.print("Nhập số lượng tác giả thêm vào: ");
         try {
             n = Integer.parseInt(sc.nextLine());
 
@@ -127,7 +127,7 @@ public class bookManagement {
     }
 
     public static void findNickname() {
-        System.out.println("Nhập tên bút danh cần tìm: ");
+        System.out.print("Nhập tên bút danh cần tìm: ");
         String nickname = sc.nextLine();
 
         for (int i = 0; i < bookList.size(); i++) {
@@ -138,7 +138,7 @@ public class bookManagement {
     }
 
     public static void edit() {
-        System.out.println("Nhập ID sách cần sửa: ");
+        System.out.print("Nhập ID sách cần sửa: ");
         try {
             id = Integer.parseInt(sc.nextLine());
             for (Book book : bookList) {
@@ -158,7 +158,7 @@ public class bookManagement {
     }
 
     public static void delete() {
-        System.out.println("Nhập ID sách cần xóa: ");
+        System.out.print("Nhập ID sách cần xóa: ");
         try {
             id = Integer.parseInt(sc.nextLine());
             bookList.remove(id-1);
@@ -178,7 +178,7 @@ public class bookManagement {
 
     public static void writeFile() {
         try{
-            File infile = new File("E:\\CaseStudy2\\books.csv");
+            File infile = new File("E:\\CaseStudy2\\src\\Data\\books.csv");
             FileWriter fw = new FileWriter(infile);
             BufferedWriter bw = new BufferedWriter(fw);
             for (int i = 0; i <  bookList.size(); i++){
@@ -195,12 +195,32 @@ public class bookManagement {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+//        try{
+//            File infile = new File("E:\\CaseStudy2\\Data\\authors.csv");
+//            FileWriter fw = new FileWriter(infile);
+//            BufferedWriter bw = new BufferedWriter(fw);
+//            for (int i = 0; i <  authorList.size(); i++){
+//                bw.write(authorList.get(i).getName() +
+//                        ", " + authorList.get(i).getAge() +
+//                        ", " + authorList.get(i).getNickname() +
+//                        ", " + authorList.get(i).getBirthday() +
+//                        ", " + authorList.get(i).getAddress() +
+//                        "\n");
+//            }
+//            bw.close();
+//            fw.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         System.out.println("Đã ghi file!");
     }
 
     public static List<Book> readFile() {
-        File infile = new File("E:\\CaseStudy2\\books.csv");
         try  {
+            File infile = new File("E:\\CaseStudy2\\src\\Data\\books.csv");
             FileReader fr = new FileReader(infile);
             BufferedReader br = new BufferedReader(fr);
 
@@ -223,6 +243,31 @@ public class bookManagement {
             e.printStackTrace();
         }
 
+//        try  {
+//            File infile = new File("E:\\CaseStudy2\\Data\\books.csv");
+//            FileReader fr = new FileReader(infile);
+//            BufferedReader br = new BufferedReader(fr);
+//
+//            String line;
+//            String splitBy = ", ";
+//            while((line = br.readLine()) != null) {
+//                String[] author = line.split(splitBy);
+//                Author author1 = new Author();
+////                author.setIdBook(Integer.parseInt(book[0]));
+//                author1.setName(author[0]);
+//                author1.setAge(Integer.parseInt(author[1]));
+//                author1.setNickname(author[2]);
+//                author1.setBirthday(author[3]);
+//                author1.setAddress(author[4]);
+//                authorList.add(author1);
+//            }
+//            br.close();
+//            fr.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return bookList;
     }
 //        String line = "";
